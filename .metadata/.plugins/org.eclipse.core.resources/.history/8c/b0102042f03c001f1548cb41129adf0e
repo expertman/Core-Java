@@ -1,0 +1,7 @@
+
+public class SungjukMgmt1 {
+	public static void main(String[] args) {
+		Student [] array = new Student[2];
+	}
+
+}

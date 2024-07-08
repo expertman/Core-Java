@@ -1,0 +1,15 @@
+
+public class VariableDemo {
+	int eng = 100;    //instance variable
+	static int math = 80;  //class variable
+	
+	
+	
+	
+	public static void main(String[] args) {
+		int kor = 90;  //local variable
+		System.out.printf("수학 점수 = %d\n", math);
+		System.out.printf("국어 점수 = %d\n", kor);
+	}
+
+}

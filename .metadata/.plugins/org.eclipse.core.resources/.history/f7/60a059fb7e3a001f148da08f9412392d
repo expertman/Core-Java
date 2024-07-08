@@ -1,0 +1,9 @@
+
+public class OpDemo {
+
+	public static void main(String[] args) {
+		short su = 5;
+		
+	}
+
+}
