@@ -1,5 +1,5 @@
 
-public class Student {
+public class Student extends Object{
 	private String hakbun, name;
 	private int kor, eng, mat, edp, tot;
 	private double avg;
@@ -65,6 +65,11 @@ public class Student {
 	}
 	public void setGrade(char grade) {
 		this.grade = grade;
+	}
+	@Override
+	public String toString() {
+		return String.format("Student [hakbun=%s, name=%s, kor=%s, eng=%s, mat=%s, edp=%s, tot=%s, avg=%s, grade=%s]",
+				hakbun, name, kor, eng, mat, edp, tot, avg, grade);
 	}
 	
 	
