@@ -61,13 +61,25 @@ public class PatientVO {
 	public String getCode() {
 		return code;
 	}
+	
+	public void setCode(String code) {
+		this.code = code;
+	}
 
 	public int getDays() {
 		return days;
 	}
+	
+	public void setDays(int days) {
+		this.days = days;
+	}
 
 	public int getAge() {
 		return age;
+	}
+	
+	public void setAge(int age) {
+		this.age = age;
 	}
 
 	@Override 
