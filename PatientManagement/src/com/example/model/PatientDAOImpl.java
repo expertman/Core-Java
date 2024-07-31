@@ -1,8 +1,11 @@
 package com.example.model;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.List;
 
 public class PatientDAOImpl implements PatientDAO {
@@ -34,9 +37,26 @@ public class PatientDAOImpl implements PatientDAO {
 	}
 
 	@Override
-	public List<PatientVO> readAllPatient() {
-		// TODO Auto-generated method stub
-		return null;
+	public List<PatientVO> readAllPatient() throws SQLException {
+		String sql = "SELECT number, dept, operfee, hospitalfee, money ";
+		sql += "FROM Patient ORDER BY number DESC";
+		Statement stmt = this.conn.createStatement();   //4.
+		ResultSet rs = stmt.executeQuery(sql);   //5
+		List<PatientVO> list = new ArrayList<PatientVO>();
+		while(rs.next()) {  //6.
+			int number = rs.getInt("number");
+			String dept = rs.getString("dept");
+			int operfee = rs.getInt("operfee");
+			int hospitalfee = rs.getInt("hospitalfee");
+			int money = rs.getInt("money");
+			PatientVO p = new PatientVO();
+			p.setNumber(number);    p.setDept(dept);
+			p.setOperFee(operfee);    p.setHospitalFee(hospitalfee);
+			p.setMoney(money);
+			list.add(p);
+		}
+		DBClose.dbClose(conn, stmt, rs);  //7
+		return list;
 	}
 
 	@Override
@@ -46,9 +66,14 @@ public class PatientDAOImpl implements PatientDAO {
 	}
 
 	@Override
-	public boolean deletePatient(int number) {
-		// TODO Auto-generated method stub
-		return false;
+	public boolean deletePatient(int number) throws SQLException {
+		//Statement stmt = this.conn.createStatement();
+		String sql = "DELETE FROM Patient WHERE number = ?";  //불완전한 SQL문
+		PreparedStatement pstmt = this.conn.prepareStatement(sql);  //4.
+		pstmt.setInt(1, number);   //완전한 SQL 문장.
+		int row = pstmt.executeUpdate();   //5
+		DBClose.dbClose(conn, pstmt);       //7
+		return (row == 1) ? true : false;
 	}
 
 }
